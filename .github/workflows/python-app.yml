@@ -43,3 +43,4 @@ jobs:
         type: now
         target_branch: main
         message: Merge staging into main
+        github_token: ${{ secrets.GITHUB_TOKEN }}
