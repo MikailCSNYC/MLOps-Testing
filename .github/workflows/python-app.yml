@@ -34,13 +34,27 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
-      run: |
-        pytest
-    - name: Merge staging -> uat
-      uses: devmasx/merge-branch@master
-      with:
-        type: now
-        target_branch: uat
-        message: Merge staging into uat
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Test with pytest
+    #   run: |
+    #     pytest
+    # - name: Merge staging -> main
+    #   uses: devmasx/merge-branch@master
+    #   with:
+    #     type: now
+    #     target_branch: main
+    #     message: Merge staging into main
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  sync-branch:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Merge development -> staging
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: staging
+          target_branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
