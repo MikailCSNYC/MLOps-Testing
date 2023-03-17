@@ -46,6 +46,7 @@ jobs:
     #     github_token: ${{ secrets.GITHUB_TOKEN }}
 
   sync-branch:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
