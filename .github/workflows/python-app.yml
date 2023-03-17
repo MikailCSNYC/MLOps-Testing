@@ -37,10 +37,23 @@ jobs:
     # - name: Test with pytest
     #   run: |
     #     pytest
-    - name: Merge staging -> main
-      uses: stage/merge-branch@master
-      with:
-        type: now
-        target_branch: main
-        message: Merge staging into main
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Merge staging -> main
+    #   uses: devmasx/merge-branch@master
+    #   with:
+    #     type: now
+    #     target_branch: main
+    #     message: Merge staging into main
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  sync-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Merge development -> staging
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: development
+          target_branch: staging
+          github_token: ${{ secrets.GITHUB_TOKEN }}
