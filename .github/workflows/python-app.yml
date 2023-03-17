@@ -37,10 +37,10 @@ jobs:
     # - name: Test with pytest
     #   run: |
     #     pytest
-    - name: Merge staging -> uat
+    - name: Merge staging -> main
       uses: devmasx/merge-branch@master
       with:
         type: now
-        target_branch: uat
-        message: Merge staging into uat
+        target_branch: main
+        message: Merge staging into main
         github_token: ${{ secrets.GITHUB_TOKEN }}
