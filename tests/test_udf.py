@@ -17,4 +17,4 @@ def test_first_two_rows():
 def test_shuffle():
     df = pd.DataFrame({"one": [ i for i in range(100)]})
     x = udf.shuffle(df)
-    assert x.compare(df).shape[0] == 0
+    assert x.compare(df).shape[0] != 0
